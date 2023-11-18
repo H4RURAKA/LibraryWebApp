@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Diary Here</title>
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body>
+		<div id="logo"><h1>Diary Here</h1></div>
+
+		<div class="login-form">
+			<h2>Login</h2>
+			<form method="post" action="server-login" id="login-form">
+				<input type="text" name="email" placeholder="Email" />
+				<input type="password" name="password" placeholder="Password" />
+				<input type="submit" value="Login" />
+				<h5>
+					if you don't have id,
+					<a href="#" id="register-link">register now</a>
+				</h5>
+			</form>
+		</div>
+
+		<div class="register-form">
+			<h2>Register</h2>
+			<form method="post" action="server-register" id="register-form">
+				<input type="text" name="email" placeholder="Email" />
+				<input type="password" name="password" placeholder="Password" />
+				<input
+					type="password"
+					name="confirm-password"
+					placeholder="Confirm your Password"
+				/>
+				<input type="submit" value="Register" />
+				<h5>
+					already have ID?
+					<a href="#" id="login-link">login</a>
+				</h5>
+			</form>
+		</div>
+		<div id="description"></div>
+		<script src="script.js"></script>
+	</body>
+</html>

@@ -1,0 +1,81 @@
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: #f4f4f4;
+}
+
+header {
+	background-color: #4c66af;
+	color: white;
+	text-align: center;
+	padding: 1em 0;
+}
+
+header h1 {
+	margin: 0;
+}
+
+nav ul {
+	list-style: none;
+	padding: 0;
+}
+
+nav ul li {
+	display: inline;
+	margin: 0 10px;
+}
+
+nav ul li:hover {
+	text-decoration: underline;
+}
+
+main {
+	margin: 20px;
+}
+
+/* Diary Entry Form Styles */
+#Write Diary {
+	background-color: white;
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	max-width: 500px;
+	margin: 20px auto;
+}
+
+#Write Diary h2 {
+	color: #333;
+	margin-bottom: 20px;
+}
+
+form input[type="text"],
+form textarea {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 15px;
+	border-radius: 5px;
+	border: 1px solid #ddd;
+}
+
+form textarea {
+	height: 150px;
+	resize: vertical;
+}
+
+form button {
+	background-color: #4c66af;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+form button:hover {
+	background-color: #4554a0;
+}
