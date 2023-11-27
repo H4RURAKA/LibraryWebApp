@@ -35,40 +35,36 @@
 		<div id="overlay"></div>
 
 		<main>
-			<div id="new_books">
-				<div>1st</div>
-				<div>2nd</div>
-				<div>3rd</div>
-			</div>
+			<section id="Book_Search">
+				<h2>Search a Book</h2>
+				<input
+					type="text"
+					id="book-search-input"
+					placeholder="Enter book title..."
+				/>
+				<button id="book-search-button">Search</button>
+				<div id="book-search-results"></div>
+			</section>
 
-			<div id="menu_container">
-				<a href="../record/index.html">
-					<div>
-						<span class="material-symbols-outlined"
-							>rate_review</span
-						>
-						Write Record
-					</div>
-				</a>
-
-				<a href="../history/index.html">
-					<div>
-						<span class="material-symbols-outlined">history</span>
-						My History
-					</div>
-				</a>
-
-				<a href="../account/index.html">
-					<div>
-						<span class="material-symbols-outlined"
-							>account_circle</span
-						>
-						Account
-					</div>
-				</a>
-			</div>
+			<section id="Write_Record" style="display: none">
+				<h2>How was this book ...?</h2>
+				<h3></h3>
+				<div id="emoji-container">
+					<span class="emoji">😀</span>
+					<span class="emoji">😢</span>
+					<span class="emoji">😠</span>
+					<span class="emoji">😍</span>
+					<span class="emoji">😱</span>
+				</div>
+				<form>
+					<textarea
+						name="content"
+						placeholder="Write your record here..."
+					></textarea>
+					<button type="submit">Save</button>
+				</form>
+			</section>
 		</main>
-
 		<script src="index.js"></script>
 	</body>
 </html>

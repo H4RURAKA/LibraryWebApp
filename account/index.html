@@ -35,40 +35,44 @@
 		<div id="overlay"></div>
 
 		<main>
-			<div id="new_books">
-				<div>1st</div>
-				<div>2nd</div>
-				<div>3rd</div>
-			</div>
-
-			<div id="menu_container">
-				<a href="../record/index.html">
-					<div>
-						<span class="material-symbols-outlined"
-							>rate_review</span
-						>
-						Write Record
-					</div>
-				</a>
-
-				<a href="../history/index.html">
-					<div>
-						<span class="material-symbols-outlined">history</span>
-						My History
-					</div>
-				</a>
-
-				<a href="../account/index.html">
-					<div>
-						<span class="material-symbols-outlined"
-							>account_circle</span
-						>
-						Account
-					</div>
-				</a>
-			</div>
+			<section id="Account_Section">
+				<h2>Account Settings</h2>
+				<div id="account-details">
+					<p>
+						현재 접속 아이디:
+						<span id="current-user-id">UserID</span>
+					</p>
+				</div>
+				<div id="password-change">
+					<h3>비밀번호 변경</h3>
+					<form id="password-change-form">
+						<input
+							type="password"
+							id="current-password"
+							placeholder="현재 비밀번호"
+							required
+						/>
+						<input
+							type="password"
+							id="new-password"
+							placeholder="새 비밀번호"
+							required
+						/>
+						<input
+							type="password"
+							id="confirm-password"
+							placeholder="새 비밀번호 확인"
+							required
+						/>
+						<button type="submit">비밀번호 변경</button>
+					</form>
+				</div>
+				<div id="account-deletion">
+					<h3>회원 탈퇴</h3>
+					<button id="delete-account-button">회원 탈퇴</button>
+				</div>
+			</section>
 		</main>
-
 		<script src="index.js"></script>
 	</body>
 </html>

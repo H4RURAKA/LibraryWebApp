@@ -30,3 +30,53 @@ document
 			document.querySelector(".register-form")
 		);
 	});
+
+$(document).ready(function () {
+	// Real-time validation for Email
+	$("#email").on("input", function () {
+		var email = $(this).val();
+		var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+		if (!emailRegex.test(email)) {
+			$("#email").css({
+				"background-color": "#ff4949",
+			});
+		} else {
+			$("#email").css({
+				border: "1px solid #00ff6e",
+			});
+		}
+	});
+	// Real-time validation for Password
+	$("#password").on("input", function () {
+		var password = $(this).val();
+		var passwordRegex =
+			/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{6,}$/;
+
+		if (!passwordRegex.test(password)) {
+			$("#password").css({
+				border: "1px solid #ff4949",
+			});
+		} else {
+			$("#password").css({
+				border: "1px solid #00ff6e",
+			});
+		}
+	});
+
+	// Real-time validation for Password Confirmation
+	$("#confirm-password").on("input", function () {
+		var password = $("#password").val();
+		var confirmPassword = $("#confirm-password").val();
+
+		if (password !== confirmPassword) {
+			$("#confirm-password").css({
+				border: "1px solid #ff4949",
+			});
+		} else {
+			$("#confirm-password").css({
+				border: "1px solid #00ff6e",
+			});
+		}
+	});
+});
