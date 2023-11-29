@@ -36,8 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	});
 
 	document.addEventListener("touchend", function (e) {
-		if (startX < 50 && endX - startX > minSwipeDistance) {
-			// 왼쪽 가장자리에서 시작한 스와이프 감지
+		if (endX - startX > minSwipeDistance) {
 			navigation.classList.add("open");
 			overlay.style.display = "block";
 		}
