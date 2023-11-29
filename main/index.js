@@ -21,26 +21,25 @@ document.addEventListener("DOMContentLoaded", function () {
 	});
 });
 
-//책 검색버튼 클릭시
-document
-	.getElementById("book-search-button")
-	.addEventListener("click", function () {
-		var query = document.getElementById("book-search-input").value;
-		searchBook(query);
+document.addEventListener("DOMContentLoaded", function () {
+	var startX, endX;
+	var minSwipeDistance = 30; // 스와이프를 감지하기 위한 최소 거리
+	var navigation = document.getElementById("navigation");
+	var overlay = document.getElementById("overlay");
+
+	document.addEventListener("touchstart", function (e) {
+		startX = e.touches[0].pageX;
 	});
 
-//책 받아오는 카카오api (kakao developers 나와있는대로)
-function searchBook(query) {
-	var API_KEY = "ca61c034b0fb920c14f59b9b6761ec0d";
-	var url =
-		"https://dapi.kakao.com/v3/search/book?target=title&query=" +
-		encodeURIComponent(query);
+	document.addEventListener("touchmove", function (e) {
+		endX = e.touches[0].pageX;
+	});
 
-	fetch(url, {
-		headers: {
-			Authorization: "KakaoAK " + API_KEY,
-		},
-	})
-		.then((response) => response.json())
-		.then((data) => displayResults(data));
-}
+	document.addEventListener("touchend", function (e) {
+		if (startX < 50 && endX - startX > minSwipeDistance) {
+			// 왼쪽 가장자리에서 시작한 스와이프 감지
+			navigation.classList.add("open");
+			overlay.style.display = "block";
+		}
+	});
+});
