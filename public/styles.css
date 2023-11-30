@@ -135,6 +135,20 @@ body {
 	text-decoration: underline;
 }
 
+.error-message {
+	display: none; /* 기본적으로 숨김 */
+	color: red;
+}
+
+.input-group {
+	position: relative;
+}
+
+.input-group .error-message {
+	position: absolute;
+	right: -20px;
+	top: 5px;
+}
 /*----------------------Description----------------------*/
 
 #description {

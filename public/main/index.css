@@ -1,0 +1,78 @@
+#new_books {
+	display: flex;
+	justify-content: space-around;
+	margin-bottom: 20px; /* 하단 여백 */
+}
+
+#new_books div {
+	background-color: white;
+	padding: 15px;
+	width: 30%;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+/*---------------------------------*/
+
+#menu_container {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.material-symbols-outlined {
+	font-size: 36px;
+	margin-bottom: 15px;
+}
+
+#menu_container a {
+	flex-basis: calc(33.333% - 10px);
+	text-decoration: none;
+	color: black;
+	margin: 0 5px;
+}
+
+#menu_container a div {
+	background-color: white;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+	cursor: pointer;
+	text-align: center;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#menu_container a div:hover {
+	transform: scale(1.05);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#menu_container a div::before {
+	content: none;
+}
+
+#menu_container div span {
+	display: block;
+	text-align: center;
+	font-weight: bold;
+	color: #4c66af;
+	margin-top: 10px;
+}
+
+#menu_container div text {
+	padding-left: 50%;
+	padding-right: 50%;
+}
+
+/*---------------------------------*/
+
+/* 반응형 웹 */
+@media screen and (max-width: 768px) {
+	/*---------------------------------*/
+}
