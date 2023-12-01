@@ -27,46 +27,45 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-function displayUserReviews() {
-	const currentUser = auth.currentUser;
-	if (!currentUser) return;
-
+// 리뷰 데이터 가져오기 및 표시
+function loadReviews() {
 	const reviewsRef = collection(db, "bookReviews");
-	const q = query(
-		reviewsRef,
-		where("uid", "==", currentUser.uid),
-		orderBy("timestamp", "desc")
-	);
+	const q = query(reviewsRef, orderBy("timestamp", "desc"));
 
-	getDocs(q)
-		.then((querySnapshot) => {
-			const reviewsContainer = document.getElementById(
-				"user-reviews-container"
-			);
-			reviewsContainer.innerHTML = ""; // 기존 리뷰 초기화
+	getDocs(q).then((querySnapshot) => {
+		const reviewsContainer = document.getElementById("reviews-container");
+		reviewsContainer.innerHTML = "";
 
-			querySnapshot.forEach((doc) => {
-				const review = doc.data();
-				const reviewElement = document.createElement("div");
-				reviewElement.innerHTML = `
-          <h3>${review.title}</h3>
-          <p>${review.emoji} - ${review.content}</p>
-          <small>${review.timestamp.toDate().toLocaleString()}</small>
-        `;
-				reviewsContainer.appendChild(reviewElement);
-			});
-		})
-		.catch((error) => {
-			console.error("Error fetching reviews:", error);
+		querySnapshot.forEach((doc) => {
+			const review = doc.data();
+			const reviewElement = document.createElement("div");
+			reviewElement.innerHTML = `
+                <h3>${review.title}</h3>
+                <button onclick="showModal('${review.title}', '${
+				review.content
+			}')">More</button>
+                <small>${review.timestamp.toDate().toLocaleString()}</small>
+            `;
+			reviewsContainer.appendChild(reviewElement);
 		});
+	});
 }
+
+// 모달 표시 함수
+function showModal(title, content) {
+	const modal = document.getElementById("modal");
+	document.getElementById("modal-title").textContent = title;
+	// 내용 추가 가능
+	modal.style.display = "block";
+}
+
+// 모달 숨기기 함수
+document.querySelector(".close-button").addEventListener("click", function () {
+	document.getElementById("modal").style.display = "none";
+});
 
 onAuthStateChanged(auth, (currentUser) => {
 	if (currentUser) {
-		// 사용자가 로그인한 경우 리뷰 표시
-		displayUserReviews();
-	} else {
-		// 로그인하지 않은 경우 처리
-		window.location.href = "../index.html"; // 로그인 페이지로 리다이렉트
+		loadReviews();
 	}
 });
