@@ -156,3 +156,10 @@ body {
 	color: #666;
 	font-size: 1em;
 }
+
+/* 반응형 웹 */
+@media screen and (max-width: 768px) {
+	#logo h1 {
+		font-size: 3em;
+	}
+}
