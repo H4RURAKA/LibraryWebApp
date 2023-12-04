@@ -127,19 +127,6 @@ document.getElementById("email").addEventListener("input", function () {
 	}
 });
 
-document.getElementById("login-email").addEventListener("input", function () {
-	var email = this.value;
-	var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-	var emailError = document.getElementById("login-email-error");
-
-	if (!emailRegex.test(email)) {
-		emailError.style.display = "block";
-		emailError.textContent = "Invalid email format"; // 오류 메시지 설정
-	} else {
-		emailError.style.display = "none";
-	}
-});
-
 //-----------------------------------------------------------------
 // particles
 

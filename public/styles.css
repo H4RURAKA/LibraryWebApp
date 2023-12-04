@@ -10,7 +10,7 @@
 		padding: 20px;
 		margin: auto;
 
-		background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+		background: linear-gradient(-45deg, #ffc4b1, #ffa8ca, #96e3ff, #93ffe6);
 		background-size: 400% 400%;
 		animation: gradient 15s ease infinite;
 	}
@@ -93,25 +93,22 @@
 
 		display: grid;
 		grid-template-rows: 8fr 2fr;
-		transition: all 0.5s ease;
+		transition: all 1s ease;
 		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 	}
 
 	.image-container {
-		background-image: url("./back.jpg");
-		/* free photo by AhmadArdity 
-		link : https://pixabay.com/ko/photos/%EC%84%9C%EC%A0%81-%EC%B1%85%EC%9E%A5-%EB%8F%84%EC%84%9C%EA%B4%80-%EA%B5%90%EC%9C%A1-2463779/ */
+		background-image: url("./book.jpg");
+		/* free photo by Foundry 
+		link : https://pixabay.com/ko/photos/%EB%8F%84%EC%84%9C%EA%B4%80-%EC%84%9C%EC%A0%81-%EA%B5%90%EC%9C%A1-%EB%AC%B8%ED%95%99-869061/ */
 		background-size: cover;
 		background-attachment: fixed;
-		background-position: 30%;
+		background-position: 55%;
 		border-radius: 10px 100px 0 0;
-		transition: all 0.5s ease;
+		transition: all 1s ease;
 	}
 
 	.text-container {
-		display: flex;
-		align-items: center;
-		justify-content: center;
 		border-radius: 0 100px 100px 0; /* 오른쪽 라운드 */
 	}
 
@@ -120,16 +117,19 @@
 		opacity: 100%;
 		transition: all 0.5s ease;
 		bottom: -3px;
+		left: 25%;
 		margin: 10% 10%;
 		color: rgb(0, 0, 0);
 	}
 
 	#text-right {
 		position: absolute;
-		opacity: 0;
+		opacity: 0%;
 		transition: all 0.5s ease;
-		margin: 10% 10%;
 		bottom: -3px;
+		right: 25%;
+		margin: 10% 10%;
+		color: rgb(0, 0, 0);
 	}
 
 	/*----------------------Login----------------------*/
@@ -226,7 +226,8 @@
 
 	.error-message {
 		display: none; /* 기본적으로 숨김 */
-		color: red;
+		color: rgb(255, 255, 255);
+		background-color: red;
 	}
 
 	.input-group {

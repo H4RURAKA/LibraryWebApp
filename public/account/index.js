@@ -9,6 +9,15 @@ import {
 	reauthenticateWithCredential,
 	signOut,
 } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
+import {
+	getFirestore,
+	collection,
+	query,
+	where,
+	getDocs,
+	deleteDoc,
+	doc,
+} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 
 const firebaseConfig = {
 	apiKey: "AIzaSyDWY38JJj04fa5wZotBLtYVmfk3hC4effI",
@@ -24,9 +33,11 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 // Firebase Auth 가져오기
 const auth = getAuth(app);
+const db = getFirestore(app);
 
 // 로그아웃 상태 플래그
 let isLoggingOut = false;
+let isWithdrawal = false;
 
 // 현재 로그인한 사용자 확인
 onAuthStateChanged(auth, (currentUser) => {
@@ -36,7 +47,7 @@ onAuthStateChanged(auth, (currentUser) => {
 			currentUser.email;
 		initializePageContent();
 		let isLoggingOut = false;
-	} else if (!isLoggingOut) {
+	} else if (!isLoggingOut || !isWithdrawal) {
 		alert("Access is restricted to members only.");
 		window.location.href = "../index.html"; // 로그인 페이지로 리다이렉트
 	}
@@ -149,13 +160,33 @@ document
 		);
 
 		if (confirmation) {
-			deleteUser(auth.currentUser)
-				.then(() => {
-					alert("Account deleted successfully.");
-					// 계정 삭제 후 처리 로직 (예: 로그인 페이지로 리다이렉트)
+			isWithdrawal = true;
+			const user = auth.currentUser;
+
+			// 사용자가 작성한 독후감 삭제
+			const reviewsRef = collection(db, "bookReviews");
+			const q = query(reviewsRef, where("uid", "==", user.uid));
+
+			getDocs(q)
+				.then((querySnapshot) => {
+					querySnapshot.forEach((docSnapshot) => {
+						deleteDoc(doc(db, "bookReviews", docSnapshot.id));
+					});
+
+					// 모든 독후감이 삭제된 후 계정 삭제
+					deleteUser(user)
+						.then(() => {
+							alert("Account deleted successfully.");
+							// 계정 삭제 후 처리 로직 (예: 로그인 페이지로 리다이렉트)
+						})
+						.catch((error) => {
+							console.error("Account deletion error:", error);
+							isWithdrawal = false;
+						});
 				})
 				.catch((error) => {
-					console.error("Account deletion error:", error);
+					console.error("Error deleting user reviews:", error);
+					isWithdrawal = false;
 				});
 		}
 	});

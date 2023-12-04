@@ -32,8 +32,15 @@ const db = getFirestore(app);
 
 // 리뷰 데이터 가져오기 및 표시
 function loadReviews() {
+	const currentUser = auth.currentUser;
+	if (!currentUser) return;
+
 	const reviewsRef = collection(db, "bookReviews");
-	const q = query(reviewsRef, orderBy("timestamp", "desc"));
+	const q = query(
+		reviewsRef,
+		where("uid", "==", currentUser.uid),
+		orderBy("timestamp", "desc")
+	);
 
 	getDocs(q).then((querySnapshot) => {
 		const reviewsContainer = document.getElementById("reviews-container");
