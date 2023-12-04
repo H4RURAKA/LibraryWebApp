@@ -1,6 +1,42 @@
-// Login <-> Register
+// Login <-> Register : desktop & mobile
 
-function toggleForm(formToShow, formToHide) {
+function toggleFormDesktop() {
+	const hider = document.querySelector(".hider");
+	const left = document.getElementById("text-left");
+	const right = document.getElementById("text-right");
+	const img = document.querySelector(".image-container");
+
+	// 현재 위치를 기반으로 방향 결정
+	const isLeft = hider.style.left === "-5%" || hider.style.left === "";
+
+	if (isLeft) {
+		// 오른쪽으로 이동
+		hider.style.left = "55%";
+		hider.style.borderRadius = "100px 10px 10px 100px";
+
+		img.style.borderRadius = "100px 10px 0 0";
+
+		left.style.opacity = "0%";
+		right.style.opacity = "100%";
+
+		right.style.margin = "10% 10%";
+		left.style.margin = "20% 10% 10% 10%";
+	} else {
+		// 왼쪽으로 이동
+		hider.style.left = "-5%";
+		hider.style.borderRadius = "10px 100px 100px 10px";
+
+		img.style.borderRadius = "10px 100px 0 0";
+
+		left.style.opacity = "100%";
+		right.style.opacity = "0%";
+
+		left.style.margin = "10% 10%";
+		right.style.margin = "10% 10% 20% 10%";
+	}
+}
+
+function toggleFormMobile(formToShow, formToHide) {
 	formToHide.style.opacity = "0";
 	setTimeout(() => {
 		formToHide.style.display = "none";
@@ -11,26 +47,73 @@ function toggleForm(formToShow, formToHide) {
 	}, 300);
 }
 
-document
-	.getElementById("register-link")
-	.addEventListener("click", function (event) {
-		event.preventDefault();
-		toggleForm(
-			document.querySelector(".register-form"),
-			document.querySelector(".login-form")
-		);
-	});
+function mobileRegisterListener() {
+	toggleFormMobile(
+		document.querySelector(".register-form"),
+		document.querySelector(".login-form")
+	);
+}
 
-document
-	.getElementById("login-link")
-	.addEventListener("click", function (event) {
-		event.preventDefault();
-		toggleForm(
-			document.querySelector(".login-form"),
-			document.querySelector(".register-form")
-		);
-	});
+function mobileLoginListener() {
+	toggleFormMobile(
+		document.querySelector(".login-form"),
+		document.querySelector(".register-form")
+	);
+}
 
+// 화면 크기에 따라 이벤트 리스너 추가 및 제거
+function checkScreenSize() {
+	removeEventListeners(); // 기존 이벤트 리스너 제거
+
+	const hider = document.querySelector(".hider");
+	const registerLink = document.getElementById("register-link");
+	const loginLink = document.getElementById("login-link");
+
+	if (mediaQuery.matches) {
+		// 768px 이상일 때
+		hider.addEventListener("click", toggleFormDesktop);
+		registerLink.addEventListener("click", toggleFormDesktop);
+		loginLink.addEventListener("click", toggleFormDesktop);
+
+		document.querySelector(".login-form").style.display = "block";
+		document.querySelector(".login-form").style.opacity = "1";
+
+		document.querySelector(".register-form").style.display = "block";
+		document.querySelector(".register-form").style.opacity = "1";
+	} else {
+		// 768px 이하일 때
+		registerLink.addEventListener("click", mobileRegisterListener);
+		loginLink.addEventListener("click", mobileLoginListener);
+
+		document.querySelector(".register-form").style.display = "none";
+		document.querySelector(".register-form").style.opacity = "0";
+		document.querySelector(".login-form").style.display = "block";
+		document.querySelector(".login-form").style.opacity = "1";
+	}
+}
+
+function removeEventListeners() {
+	const registerLink = document.getElementById("register-link");
+	const loginLink = document.getElementById("login-link");
+
+	// 이벤트 리스너 제거
+	registerLink.removeEventListener("click", toggleFormDesktop);
+	registerLink.removeEventListener("click", mobileRegisterListener);
+
+	loginLink.removeEventListener("click", toggleFormDesktop);
+	loginLink.removeEventListener("click", mobileLoginListener);
+}
+
+// 화면 사이즈용 변수
+const mediaQuery = window.matchMedia("(min-width: 768px)");
+
+// 화면 사이즈 변경 감지하여 함수 실행
+mediaQuery.addEventListener("change", checkScreenSize);
+
+// 페이지 로드 시 함수 실행
+document.addEventListener("DOMContentLoaded", checkScreenSize);
+
+// 이메일 체크
 document.getElementById("email").addEventListener("input", function () {
 	var email = this.value;
 	var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -55,6 +138,90 @@ document.getElementById("login-email").addEventListener("input", function () {
 	} else {
 		emailError.style.display = "none";
 	}
+});
+
+//-----------------------------------------------------------------
+// particles
+
+function initializeParticles() {
+	if (window.innerWidth >= 768) {
+		particlesJS("particles-js", {
+			particles: {
+				number: {
+					value: 80,
+					density: {
+						enable: true,
+						value_area: 800,
+					},
+				},
+				shape: {
+					type: "polygon",
+					stroke: {
+						width: 0,
+						color: "#000000",
+					},
+					polygon: {
+						nb_sides: 5,
+					},
+				},
+				size: {
+					value: 3,
+					random: true,
+					anim: {
+						speed: 40,
+						size_min: 0.1,
+					},
+				},
+				line_linked: {
+					enable: true,
+					distance: 150,
+					color: "#ffffff",
+					opacity: 0.4,
+					width: 1,
+				},
+				move: {
+					enable: true,
+					speed: 4,
+					direction: "none",
+					random: true,
+					straight: false,
+					out_mode: "out",
+					bounce: false,
+				},
+			},
+			interactivity: {
+				detect_on: "canvas",
+				events: {
+					onclick: {
+						enable: true,
+						mode: "push",
+					},
+					resize: true,
+				},
+			},
+			retina_detect: true,
+		});
+	} else {
+		// 화면이 768픽셀 미만일 때 particles.js 제거
+		if (window.pJSDom && window.pJSDom.length > 0) {
+			window.pJSDom.forEach(function (pJS) {
+				pJS.pJS.fn.vendors.destroypJS();
+			});
+			window["pJSDom"] = [];
+		}
+	}
+}
+
+// 윈도우 로드 이벤트 리스너 추가
+window.addEventListener("load", initializeParticles);
+
+var delay = 300;
+var timer = null;
+
+// 윈도우 리사이즈 이벤트 리스너 추가
+window.addEventListener("resize", function () {
+	clearTimeout(timer);
+	timer = setTimeout(initializeParticles, delay);
 });
 
 //-----------------------------------------------------------------
@@ -133,7 +300,6 @@ document.getElementById("login-form").addEventListener("submit", function (e) {
 
 	signInWithEmailAndPassword(auth, email, password)
 		.then((userCredential) => {
-			console.log("Login Successful:", userCredential.user);
 			// 사용자 이메일을 세션 스토리지에 저장
 			sessionStorage.setItem("userEmail", userCredential.user.email);
 

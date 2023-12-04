@@ -1,0 +1,165 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300&family=Sacramento&display=swap");
+
+body {
+	font-family: "Raleway", sans-serif;
+	background-color: #f4f4f4;
+	text-align: center;
+	align-items: center;
+	padding: 20px;
+	margin: auto;
+}
+
+.login-form,
+.register-form {
+	transition: opacity 0.3s;
+	opacity: 0;
+	display: none;
+}
+
+.login-form {
+	opacity: 1;
+	display: block;
+}
+
+#logo h1 {
+	font-family: "Sacramento", cursive;
+	margin-top: 10%;
+	margin-bottom: 5%;
+	font-size: 4em;
+	color: #333;
+}
+
+/*----------------------Login----------------------*/
+
+.login-form {
+	background-color: white;
+	padding: 40px;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	max-width: 300px;
+	margin: 20px auto;
+	text-align: center;
+}
+
+.login-form h2 {
+	margin-bottom: 20px;
+	color: #333;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"],
+.login-form input[type="submit"] {
+	width: 80%;
+	padding: 10px;
+	margin: 10px 0;
+	border-radius: 5px;
+	border: 1px solid #ddd;
+}
+
+.login-form input[type="submit"] {
+	background-color: #4c66af;
+	color: white;
+	border: none;
+	cursor: pointer;
+}
+
+.login-form input[type="submit"]:hover {
+	background-color: #4554a0;
+}
+
+.login-form h5 {
+	margin-top: 40px;
+	color: #666;
+	font-size: 0.9em;
+}
+
+.login-form a {
+	color: #007bff;
+	text-decoration: none;
+}
+
+.login-form a:hover {
+	text-decoration: underline;
+}
+
+/*----------------------Register----------------------*/
+
+.register-form {
+	background-color: white;
+	padding: 40px;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	max-width: 300px;
+	margin: 20px auto;
+	text-align: center;
+}
+
+.register-form h2 {
+	margin-bottom: 20px;
+	color: #333;
+}
+
+.register-form input[type="text"],
+.register-form input[type="password"],
+.register-form input[type="submit"] {
+	width: 80%;
+	padding: 10px;
+	margin: 10px 0;
+	border-radius: 5px;
+	border: 1px solid #ddd;
+}
+
+.register-form input[type="submit"] {
+	background-color: #4c66af;
+	color: white;
+	border: none;
+	cursor: pointer;
+}
+
+.register-form input[type="submit"]:hover {
+	background-color: #4554a0;
+}
+
+.register-form h5 {
+	margin-top: 40px;
+	color: #666;
+	font-size: 0.9em;
+}
+
+.register-form a {
+	color: #007bff;
+	text-decoration: none;
+}
+
+.register-form a:hover {
+	text-decoration: underline;
+}
+
+.error-message {
+	display: none; /* 기본적으로 숨김 */
+	color: red;
+}
+
+.input-group {
+	position: relative;
+}
+
+.input-group .error-message {
+	position: absolute;
+	right: -20px;
+	top: 5px;
+}
+/*----------------------Description----------------------*/
+
+#description {
+	margin-top: 30px;
+	color: #666;
+	font-size: 1em;
+}
+
+/* 반응형 웹 */
+@media screen and (max-width: 768px) {
+	#logo h1 {
+		font-size: 3em;
+	}
+}

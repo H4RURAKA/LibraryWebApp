@@ -1,0 +1,404 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300&family=Sacramento&display=swap");
+
+/* 반응형 웹 Desktop */
+@media screen and (min-width: 768px) {
+	body {
+		font-family: "Raleway", sans-serif;
+
+		text-align: center;
+		align-items: center;
+		padding: 20px;
+		margin: auto;
+
+		background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+		background-size: 400% 400%;
+		animation: gradient 15s ease infinite;
+	}
+
+	@keyframes gradient {
+		0% {
+			background-position: 0% 50%;
+		}
+		50% {
+			background-position: 100% 50%;
+		}
+		100% {
+			background-position: 0% 50%;
+		}
+	}
+	/*https://codepen.io/P1N2O/pen/pyBNzX*/
+
+	#particles-js {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: 50% 50%;
+	}
+
+	#logo h1 {
+		font-family: "Sacramento", cursive;
+		margin-top: 5%;
+		margin-bottom: 5%;
+		font-size: 50px;
+		color: #000000;
+	}
+
+	/*----------------------Wrapper----------------------*/
+
+	.account-wrapper {
+		position: relative;
+
+		background: rgba(255, 255, 255, 0.25);
+		box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+		backdrop-filter: blur(4.5px);
+		-webkit-backdrop-filter: blur(4.5px);
+		border: 1px solid rgba(255, 255, 255, 0.18);
+
+		padding: 40px;
+		border-radius: 10px;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+		max-width: 820px;
+		width: 70%;
+		margin: 20px auto;
+
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 10%;
+	}
+
+	/*----------------------Hider----------------------*/
+
+	.hider {
+		position: absolute;
+
+		border-radius: 10px 100px 100px 10px;
+
+		left: -5%;
+		top: -5%;
+
+		width: 50%;
+		height: 110%;
+
+		background-color: #ffffff;
+		z-index: 9999;
+
+		display: grid;
+		grid-template-rows: 8fr 2fr;
+		transition: all 0.5s ease;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	}
+
+	.image-container {
+		background-image: url("./back.jpg");
+		background-size: cover;
+		background-attachment: fixed;
+		background-position: 30%;
+		border-radius: 10px 100px 0 0;
+		transition: all 0.5s ease;
+	}
+
+	.text-container {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 0 100px 100px 0; /* 오른쪽 라운드 */
+	}
+
+	#text-left {
+		position: absolute;
+		opacity: 100%;
+		transition: all 0.5s ease;
+		bottom: -3px;
+		margin: 10% 10%;
+		color: rgb(0, 0, 0);
+	}
+
+	#text-right {
+		position: absolute;
+		opacity: 0;
+		transition: all 0.5s ease;
+		margin: 10% 10%;
+		bottom: -3px;
+	}
+
+	/*----------------------Login----------------------*/
+
+	.login-form h2 {
+		margin-bottom: 20px;
+		color: #333;
+	}
+
+	.login-form input[type="text"],
+	.login-form input[type="password"],
+	.login-form input[type="submit"] {
+		width: 80%;
+		padding: 10px;
+		margin: 10px 0;
+		border-radius: 5px;
+		border: 1px solid #ddd;
+	}
+
+	.login-form input[type="submit"] {
+		background-color: #4c66af;
+		color: white;
+		border: none;
+		cursor: pointer;
+	}
+
+	.login-form input[type="submit"]:hover {
+		background-color: #4554a0;
+	}
+
+	.login-form h5 {
+		margin-top: 40px;
+		color: #000000;
+		font-size: 0.9em;
+	}
+
+	.login-form a {
+		color: #007bff;
+		text-decoration: none;
+	}
+
+	.login-form a:hover {
+		text-decoration: underline;
+	}
+
+	/*----------------------Register----------------------*/
+
+	.register-form h2 {
+		margin-bottom: 20px;
+		color: #333;
+	}
+
+	.register-form input[type="text"],
+	.register-form input[type="password"],
+	.register-form input[type="submit"] {
+		width: 80%;
+		padding: 10px;
+		margin: 10px 0;
+		border-radius: 5px;
+		border: 1px solid #ddd;
+	}
+
+	.register-form input[type="submit"] {
+		background-color: #4c66af;
+		color: white;
+		border: none;
+		cursor: pointer;
+	}
+
+	.register-form input[type="submit"]:hover {
+		background-color: #4554a0;
+	}
+
+	.register-form h5 {
+		margin-top: 40px;
+		color: #000000;
+		font-size: 0.9em;
+	}
+
+	.register-form a {
+		color: #007bff;
+		text-decoration: none;
+	}
+
+	.register-form a:hover {
+		text-decoration: underline;
+	}
+
+	.error-message {
+		display: none; /* 기본적으로 숨김 */
+		color: red;
+	}
+
+	.input-group {
+		position: relative;
+	}
+
+	.input-group .error-message {
+		position: absolute;
+		right: -20px;
+		top: 5px;
+	}
+	/*----------------------Description----------------------*/
+
+	#description {
+		margin-top: 30px;
+		color: #000000;
+		font-size: 15px;
+	}
+}
+
+/* 반응형 웹 Mobile */
+@media screen and (max-width: 768px) {
+	body {
+		font-family: "Raleway", sans-serif;
+		background-color: #f4f4f4;
+		text-align: center;
+		align-items: center;
+		padding: 20px;
+		margin: auto;
+	}
+
+	.login-form,
+	.register-form {
+		transition: opacity 0.3s;
+		opacity: 0;
+		display: none;
+	}
+
+	.login-form {
+		opacity: 1;
+		display: block;
+	}
+
+	#logo h1 {
+		font-family: "Sacramento", cursive;
+		margin-top: 10%;
+		margin-bottom: 5%;
+		font-size: 3em;
+		color: #333;
+	}
+
+	#text-left {
+		display: none;
+	}
+
+	#text-right {
+		display: none;
+	}
+
+	/*----------------------Login----------------------*/
+
+	.login-form {
+		background-color: white;
+		padding: 40px;
+		border-radius: 10px;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+		max-width: 300px;
+		margin: 20px auto;
+		text-align: center;
+	}
+
+	.login-form h2 {
+		margin-bottom: 20px;
+		color: #333;
+	}
+
+	.login-form input[type="text"],
+	.login-form input[type="password"],
+	.login-form input[type="submit"] {
+		width: 80%;
+		padding: 10px;
+		margin: 10px 0;
+		border-radius: 5px;
+		border: 1px solid #ddd;
+	}
+
+	.login-form input[type="submit"] {
+		background-color: #4c66af;
+		color: white;
+		border: none;
+		cursor: pointer;
+	}
+
+	.login-form input[type="submit"]:hover {
+		background-color: #4554a0;
+	}
+
+	.login-form h5 {
+		margin-top: 40px;
+		color: #666;
+		font-size: 0.9em;
+	}
+
+	.login-form a {
+		color: #007bff;
+		text-decoration: none;
+	}
+
+	.login-form a:hover {
+		text-decoration: underline;
+	}
+
+	/*----------------------Register----------------------*/
+
+	.register-form {
+		background-color: white;
+		padding: 40px;
+		border-radius: 10px;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+		max-width: 300px;
+		margin: 20px auto;
+		text-align: center;
+	}
+
+	.register-form h2 {
+		margin-bottom: 20px;
+		color: #333;
+	}
+
+	.register-form input[type="text"],
+	.register-form input[type="password"],
+	.register-form input[type="submit"] {
+		width: 80%;
+		padding: 10px;
+		margin: 10px 0;
+		border-radius: 5px;
+		border: 1px solid #ddd;
+	}
+
+	.register-form input[type="submit"] {
+		background-color: #4c66af;
+		color: white;
+		border: none;
+		cursor: pointer;
+	}
+
+	.register-form input[type="submit"]:hover {
+		background-color: #4554a0;
+	}
+
+	.register-form h5 {
+		margin-top: 40px;
+		color: #666;
+		font-size: 0.9em;
+	}
+
+	.register-form a {
+		color: #007bff;
+		text-decoration: none;
+	}
+
+	.register-form a:hover {
+		text-decoration: underline;
+	}
+
+	.error-message {
+		display: none; /* 기본적으로 숨김 */
+		color: red;
+	}
+
+	.input-group {
+		position: relative;
+	}
+
+	.input-group .error-message {
+		position: absolute;
+		right: -20px;
+		top: 5px;
+	}
+	/*----------------------Description----------------------*/
+
+	#description {
+		margin-top: 30px;
+		color: #666;
+		font-size: 1em;
+	}
+}

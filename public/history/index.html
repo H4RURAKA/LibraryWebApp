@@ -8,7 +8,8 @@
 		<link rel="stylesheet" href="../common.css" />
 		<link
 			rel="stylesheet"
-			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+		/>
 		<style>
 			.material-symbols-outlined {
 				font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0,
@@ -37,10 +38,23 @@
 		<div id="overlay"></div>
 
 		<div id="reviews-container"></div>
-		<div id="modal" class="modal">
-			<div class="modal-content">
-				<span class="close-button">&times;</span>
-				<h3 id="modal-title"></h3>
+
+		<div id="detail-section" style="display: none">
+			<div class="detail-header">
+				<h3 id="detail-title"></h3>
+				<span class="material-symbols-outlined" id="close-detail">
+					close
+				</span>
+			</div>
+			<div class="detail-info">
+				<h5 id="detail-date"></h5>
+				<p id="detail-emoticon"></p>
+			</div>
+			<p id="detail-content"></p>
+			<div class="detail-footer">
+				<span class="material-symbols-outlined" id="delete-detail"
+					>delete</span
+				>
 			</div>
 		</div>
 

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Your Library</title>
+		<link rel="stylesheet" href="styles.css" />
+		<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+		<!-- https://github.com/marcbruederlin/particles.js -->
+	</head>
+
+	<body>
+		<!-- update the version number as needed -->
+		<script defer src="/__/firebase/10.7.0/firebase-app-compat.js"></script>
+		<!-- include only the Firebase features as you need -->
+		<script
+			defer
+			src="/__/firebase/10.7.0/firebase-auth-compat.js"
+		></script>
+		<script
+			defer
+			src="/__/firebase/10.7.0/firebase-firestore-compat.js"
+		></script>
+
+		<script type="module">
+			// Import the functions you need from the SDKs you need
+			import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+			import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-analytics.js";
+			// TODO: Add SDKs for Firebase products that you want to use
+			// https://firebase.google.com/docs/web/setup#available-libraries
+
+			// Your web app's Firebase configuration
+			// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+			const firebaseConfig = {
+				apiKey: "AIzaSyDWY38JJj04fa5wZotBLtYVmfk3hC4effI",
+				authDomain: "yourlibrary-25f98.firebaseapp.com",
+				projectId: "yourlibrary-25f98",
+				storageBucket: "yourlibrary-25f98.appspot.com",
+				messagingSenderId: "188512431713",
+				appId: "1:188512431713:web:c48e8a94e6a87ee4594420",
+				measurementId: "G-QFHGSFZN4K",
+			};
+
+			// Initialize Firebase
+			const app = initializeApp(firebaseConfig);
+			const analytics = getAnalytics(app);
+		</script>
+
+		<div id="particles-js"></div>
+
+		<div id="logo"><h1>Your Library</h1></div>
+
+		<div class="account-wrapper">
+			<div class="hider">
+				<div class="image-container"></div>
+				<div class="text-container">
+					<div id="text-left">
+						Start Your Library <br />
+						With Us
+					</div>
+					<div id="text-right">
+						Welcome Back,<br />
+						Our librarian.
+					</div>
+				</div>
+			</div>
+			<div class="login-form">
+				<h2>Login</h2>
+				<form method="post" action="server-login" id="login-form">
+					<input
+						type="text"
+						name="login-email"
+						placeholder="Email"
+						id="login-email"
+					/>
+					<span class="error-message" id="login-email-error"></span>
+					<input
+						type="password"
+						name="login-password"
+						placeholder="Password"
+						id="login-password"
+					/>
+					<span
+						class="error-message"
+						id="login-password-error"
+					></span>
+					<input type="submit" value="Login" />
+					<h5>
+						if you don't have id,
+						<a href="#" id="register-link">register now</a>
+					</h5>
+				</form>
+			</div>
+
+			<div class="register-form">
+				<h2>Register</h2>
+				<form method="post" action="server-register" id="register-form">
+					<input
+						type="text"
+						name="email"
+						placeholder="Email"
+						id="email"
+					/>
+					<span class="error-message" id="email-error"></span>
+					<input
+						type="password"
+						name="password"
+						placeholder="Password"
+						id="password"
+					/>
+					<input
+						type="password"
+						name="confirm-password"
+						placeholder="Confirm your Password"
+						id="confirm-password"
+					/>
+					<span class="error-message" id="password-error"></span>
+					<input type="submit" value="Register" />
+					<h5>
+						already have ID?
+						<a href="#" id="login-link">login</a>
+					</h5>
+				</form>
+			</div>
+		</div>
+
+		<div id="description">
+			<br />
+			<p>Personal Book Review Record Service</p>
+			<p>&copy; 2023 Your Library</p>
+		</div>
+		<script type="module" src="script.js"></script>
+	</body>
+</html>

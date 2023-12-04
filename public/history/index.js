@@ -5,6 +5,9 @@ import {
 	where,
 	orderBy,
 	getDocs,
+	doc,
+	getDoc,
+	deleteDoc,
 } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 import {
 	getAuth,
@@ -36,36 +39,81 @@ function loadReviews() {
 		const reviewsContainer = document.getElementById("reviews-container");
 		reviewsContainer.innerHTML = "";
 
-		querySnapshot.forEach((doc) => {
-			const review = doc.data();
+		querySnapshot.forEach((docSnapshot) => {
+			const review = docSnapshot.data();
 			const reviewElement = document.createElement("div");
 			reviewElement.innerHTML = `
-                <h3>${review.title}</h3>
-                <button onclick="showModal('${review.title}', '${
-				review.content
-			}')">More</button>
-                <small>${review.timestamp.toDate().toLocaleString()}</small>
+				<div class="review-detail">
+					<h3>${review.title}</h3>
+					<small>${review.timestamp.toDate().toLocaleString()}</small>
+				</div>
+				<span class="material-symbols-outlined" id="more-${
+					docSnapshot.id
+				}">double_arrow</span>
             `;
 			reviewsContainer.appendChild(reviewElement);
+
+			document
+				.getElementById(`more-${docSnapshot.id}`)
+				.addEventListener("click", () => {
+					showDetail(docSnapshot.id);
+				});
 		});
 	});
 }
-
-// 모달 표시 함수
-function showModal(title, content) {
-	const modal = document.getElementById("modal");
-	document.getElementById("modal-title").textContent = title;
-	// 내용 추가 가능
-	modal.style.display = "block";
-}
-
-// 모달 숨기기 함수
-document.querySelector(".close-button").addEventListener("click", function () {
-	document.getElementById("modal").style.display = "none";
-});
 
 onAuthStateChanged(auth, (currentUser) => {
 	if (currentUser) {
 		loadReviews();
 	}
 });
+
+// 상세 내용 표시
+function showDetail(docId) {
+	// Firestore에서 해당 docId의 리뷰 가져오기
+	const docRef = doc(db, "bookReviews", docId);
+	getDoc(docRef).then((docSnap) => {
+		if (docSnap.exists()) {
+			const review = docSnap.data();
+			document.getElementById("detail-title").textContent = review.title;
+			document.getElementById("detail-date").textContent =
+				review.timestamp.toDate().toLocaleString();
+			document.getElementById("detail-content").textContent =
+				review.content;
+			document.getElementById("detail-emoticon").textContent =
+				review.emoji;
+
+			document.getElementById("detail-section").style.display = "block";
+			document.getElementById("reviews-container").style.display = "none";
+
+			document.getElementById("delete-detail").onclick = () =>
+				deleteReview(docId);
+		} else {
+			console.log("No such document!");
+		}
+	});
+}
+
+// 닫기 버튼 이벤트 리스너 설정
+document.getElementById("close-detail").addEventListener("click", function () {
+	location.reload();
+});
+
+// 리뷰 삭제
+function deleteReview(docId) {
+	if (
+		confirm(
+			"Are you sure you want to delete this review? This action cannot be undone."
+		)
+	) {
+		const docRef = doc(db, "bookReviews", docId);
+		deleteDoc(docRef)
+			.then(() => {
+				alert("Review deleted successfully.");
+				location.reload();
+			})
+			.catch((error) => {
+				alert("Error deleting review.");
+			});
+	}
+}

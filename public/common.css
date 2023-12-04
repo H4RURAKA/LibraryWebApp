@@ -10,7 +10,7 @@
 
 .loading-cover {
 	position: fixed; /* 고정 위치 */
-	top: 0;
+	top: 14vh;
 	left: 0;
 	width: 500%;
 	height: 500%;
@@ -95,6 +95,9 @@ main {
 	}
 
 	/*---------------------------------*/
+	.loading-cover {
+		top: 9vh;
+	}
 
 	#menu-icon {
 		display: block;

@@ -129,7 +129,7 @@ document
 							currentPasswordError.textContent =
 								"Too many login attempts. Please try again later.";
 							break;
-						case "auth/wrong-password":
+						case "auth/invalid-credential":
 							currentPasswordError.textContent =
 								"Incorrect password";
 							break;

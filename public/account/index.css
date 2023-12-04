@@ -1,4 +1,7 @@
 /*---------------------------------*/
+#Account_Section {
+	margin-top: 10px;
+}
 
 #Account_Section h2,
 #Account_Section h3 {
@@ -18,7 +21,7 @@
 /*---------------------------------*/
 
 .error-message {
-	display: none; /* 기본적으로 숨김 */
+	display: none;
 	color: red;
 }
 
