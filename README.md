@@ -35,3 +35,7 @@ Additionally, the app is published using GitHub Pages: [Live Demo](https://h4rur
 -   [Kakao's REST API Documentation](https://developers.kakao.com/docs/latest/ko/daum-search/dev-guide#search-book)
 -   [Firebase Official Documentation](https://firebase.google.com/docs)
 -   [Firebase Installation Tutorial](https://www.youtube.com/watch?v=9RkXchEJgKU)
+
+### **License**
+
+This project is distributed under the MIT license. For more information, see the [LICENSE.md](LICENSE.md) file.
