@@ -28,13 +28,13 @@ function logout() {
 	signOut(auth)
 		.then(() => {
 			// 로그아웃 성공 시 처리
-			console.log("Logout success");
 			alert("Logout success");
 			window.location.href = "../index.html"; // 로그인 페이지
 		})
 		.catch((error) => {
 			// 로그아웃 에러 처리
 			console.error("Logout Error:", error);
+			alert("Logout Error");
 			isLoggingOut = false; // 플래그 초기화
 		});
 }

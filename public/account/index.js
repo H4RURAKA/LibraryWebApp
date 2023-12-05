@@ -37,7 +37,6 @@ const db = getFirestore(app);
 
 // 로그아웃 상태 플래그
 let isLoggingOut = false;
-let isWithdrawal = false;
 
 // 현재 로그인한 사용자 확인
 onAuthStateChanged(auth, (currentUser) => {
@@ -47,7 +46,7 @@ onAuthStateChanged(auth, (currentUser) => {
 			currentUser.email;
 		initializePageContent();
 		let isLoggingOut = false;
-	} else if (!isLoggingOut || !isWithdrawal) {
+	} else if (!isLoggingOut) {
 		alert("Access is restricted to members only.");
 		window.location.href = "../index.html"; // 로그인 페이지로 리다이렉트
 	}
@@ -125,11 +124,11 @@ document
 					updatePassword(auth.currentUser, newPassword)
 						.then(() => {
 							alert("Password successfully changed.");
-							// 추가적인 성공 처리 로직
+							location.reload();
 						})
 						.catch((error) => {
 							console.error("비밀번호 변경 중 오류 발생:", error);
-							// 오류 메시지 처리
+							alert("비밀번호 변경 중 오류 발생");
 						});
 				})
 				.catch((error) => {
@@ -144,7 +143,6 @@ document
 							currentPasswordError.textContent =
 								"Incorrect password";
 							break;
-						// 기타 오류 코드 처리
 					}
 					currentPasswordError.style.display = "block";
 				});
@@ -160,7 +158,6 @@ document
 		);
 
 		if (confirmation) {
-			isWithdrawal = true;
 			const user = auth.currentUser;
 
 			// 사용자가 작성한 독후감 삭제
@@ -181,12 +178,12 @@ document
 						})
 						.catch((error) => {
 							console.error("Account deletion error:", error);
-							isWithdrawal = false;
+							alert("Account deletion error");
 						});
 				})
 				.catch((error) => {
 					console.error("Error deleting user reviews:", error);
-					isWithdrawal = false;
+					alert("Error deleting user reviews");
 				});
 		}
 	});
@@ -197,13 +194,13 @@ function logout() {
 	signOut(auth)
 		.then(() => {
 			// 로그아웃 성공 시 처리
-			console.log("Logout success");
 			alert("Logout success");
 			window.location.href = "../index.html"; // 로그인 페이지
 		})
 		.catch((error) => {
 			// 로그아웃 에러 처리
 			console.error("Logout Error:", error);
+			alert("Logout Error");
 			isLoggingOut = false; // 플래그 초기화
 		});
 }

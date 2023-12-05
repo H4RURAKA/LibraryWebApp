@@ -263,7 +263,6 @@ document
 							passwordError.textContent =
 								"Password should be at least 6 characters";
 							break;
-						// 기타 오류 코드 추가
 					}
 				});
 		} else {
@@ -314,7 +313,6 @@ document.getElementById("login-form").addEventListener("submit", function (e) {
 						"Too many login attempts. Please try again later.";
 					emailError.style.display = "block";
 					break;
-				// 다른 오류 코드 처리
 			}
 			console.error("Login Error:", error);
 		});
