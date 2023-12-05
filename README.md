@@ -38,4 +38,4 @@ Additionally, the app is published using GitHub Pages: [Live Demo](https://h4rur
 
 ### **License**
 
-This project is distributed under the MIT license. For more information, see the [LICENSE.md](LICENSE.md) file.
+This project is distributed under the MIT license. For more information, see the [LICENSE](LICENSE) file.
