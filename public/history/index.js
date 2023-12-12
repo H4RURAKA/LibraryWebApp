@@ -25,12 +25,12 @@ const firebaseConfig = {
 	measurementId: "G-QFHGSFZN4K",
 };
 
-// Firebase 초기화
+// Reset Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// 리뷰 데이터 가져오기 및 표시
+// Get and display review data
 function loadReviews() {
 	const currentUser = auth.currentUser;
 	if (!currentUser) return;
@@ -45,6 +45,12 @@ function loadReviews() {
 	getDocs(q).then((querySnapshot) => {
 		const reviewsContainer = document.getElementById("reviews-container");
 		reviewsContainer.innerHTML = "";
+
+		if (querySnapshot.empty) {
+			reviewsContainer.innerHTML = `<p>You have not yet written a book report.</br></br>
+			>> <a href="../record/index.html" class="link">Go to write a book report now</a> <<</p>`;
+			return;
+		}
 
 		querySnapshot.forEach((docSnapshot) => {
 			const review = docSnapshot.data();
@@ -75,9 +81,9 @@ onAuthStateChanged(auth, (currentUser) => {
 	}
 });
 
-// 상세 내용 표시
+// Show detail
 function showDetail(docId) {
-	// Firestore에서 해당 docId의 리뷰 가져오기
+	// Get reviews for that docId from Firestore
 	const docRef = doc(db, "bookReviews", docId);
 	getDoc(docRef).then((docSnap) => {
 		if (docSnap.exists()) {
@@ -101,12 +107,12 @@ function showDetail(docId) {
 	});
 }
 
-// 닫기 버튼 이벤트 리스너 설정
+// event listener to close btn
 document.getElementById("close-detail").addEventListener("click", function () {
 	location.reload();
 });
 
-// 리뷰 삭제
+// delete review
 function deleteReview(docId) {
 	if (
 		confirm(

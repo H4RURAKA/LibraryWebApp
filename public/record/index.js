@@ -1,4 +1,4 @@
-// 책 검색버튼 클릭시
+// when click search button
 document
 	.getElementById("book-search-button")
 	.addEventListener("click", function () {
@@ -6,7 +6,8 @@ document
 		searchBook(query);
 	});
 
-// 책 받아오는 카카오api (kakao developers)
+// Book search API (KAKAO API) (kakao developers)
+// https://developers.kakao.com/docs/latest/ko/daum-search/dev-guide#search-book
 function searchBook(query) {
 	var API_KEY = "ca61c034b0fb920c14f59b9b6761ec0d";
 	var url =
@@ -22,13 +23,13 @@ function searchBook(query) {
 		.then((data) => displayResults(data));
 }
 
-// 선택된 책 제목 저장용 전역 변수
+// Global variable for storing the selected book title
 let selectedBookTitle = "";
 
-// 책 출력
+// print book list
 function displayResults(data) {
 	var resultsContainer = document.getElementById("book-search-results");
-	resultsContainer.innerHTML = ""; // 이전 검색 결과 삭제
+	resultsContainer.innerHTML = ""; // Delete previous search results
 	data.documents.forEach((book) => {
 		var bookElement = document.createElement("div");
 		bookElement.innerHTML = `
@@ -41,7 +42,7 @@ function displayResults(data) {
 	});
 }
 
-// div 클릭시
+// when select book by div
 document.addEventListener("DOMContentLoaded", function () {
 	document
 		.getElementById("book-search-results")
@@ -58,37 +59,36 @@ document.addEventListener("DOMContentLoaded", function () {
 				var fullText = clickedElement.querySelector("p").innerHTML;
 				var bookTitle = fullText.split("<br>")[0];
 				selectedBookTitle = bookTitle;
-				displayReviewSection(bookTitle); // 독후감 섹션 표시 함수 호출
+				displayReviewSection(bookTitle);
 			}
 		});
 });
 
-// 책 선택 후 일어나는 일
+// After you select book
 function displayReviewSection(bookTitle) {
-	// 검색 섹션 숨기기
+	// hide search section
 	document.getElementById("Book_Search").style.display = "none";
 
-	// 독후감 섹션 표시 및 책 제목 설정
+	// show record section with book title
 	var reviewSection = document.getElementById("Write_Record");
 	reviewSection.style.display = "block";
 	reviewSection.querySelector("h3").textContent = "Selected : " + bookTitle;
 
-	// 독후감 작성란에 초점 맞추기
 	reviewSection.querySelector("textarea").focus();
 }
 
-// 이모지 선택
+// select emoji
 document.addEventListener("DOMContentLoaded", function () {
 	var emojis = document.querySelectorAll(".emoji");
 
 	emojis.forEach(function (emoji) {
 		emoji.addEventListener("click", function () {
-			// 다른 이모지의 활성 상태를 제거
+			// inactive other emoji
 			emojis.forEach(function (e) {
 				e.classList.remove("active");
 			});
 
-			// 클릭된 이모지에 'active' 클래스 추가
+			// add 'active' class to select emoji (100% color scale)
 			emoji.classList.add("active");
 		});
 	});
@@ -112,7 +112,7 @@ const firebaseConfig = {
 	measurementId: "G-QFHGSFZN4K",
 };
 
-// Firestore 인스턴스 초기화
+// Reset Firestore instance
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
@@ -126,7 +126,7 @@ document.querySelector("form").addEventListener("submit", async (e) => {
 	const bookTitle = selectedBookTitle;
 	const content = document.querySelector('textarea[name="content"]').value;
 
-	// Firestore에 데이터 저장
+	// Store data to Firestore
 	try {
 		const docRef = await addDoc(collection(db, "bookReviews"), {
 			uid: auth.currentUser.uid,
@@ -136,9 +136,9 @@ document.querySelector("form").addEventListener("submit", async (e) => {
 			timestamp: new Date(),
 		});
 		console.log("Document written with ID: ", docRef.id);
-		location.reload(); // 페이지 새로고침
+		location.reload(); // reload
 		alert("Review saved successfully!");
-		location.reload(); // 페이지 새로고침
+		location.reload(); // reload
 	} catch (e) {
 		console.error("Error adding document: ", e);
 		alert("Error saving review.");

@@ -9,8 +9,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300&family=Sacramento&display=swap");
 
 .loading-cover {
-	position: fixed; /* 고정 위치 */
-	top: 14vh;
+	position: fixed;
+	top: 15vh;
 	left: 0;
 	width: 500%;
 	height: 500%;
@@ -26,7 +26,7 @@
 
 .loading-cover.hidden {
 	opacity: 0;
-	pointer-events: none; /* 마우스 이벤트 무시 */
+	pointer-events: none;
 }
 
 body {
@@ -96,7 +96,7 @@ main {
 
 	/*---------------------------------*/
 	.loading-cover {
-		top: 9vh;
+		top: 10vh;
 	}
 
 	header h1 {

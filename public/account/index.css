@@ -1,6 +1,8 @@
 /*---------------------------------*/
 #Account_Section {
 	margin-top: 10px;
+	margin: auto;
+	width: 50%;
 }
 
 #Account_Section h2,
@@ -37,6 +39,7 @@
 
 form {
 	margin-top: 10px;
+	width: 100%;
 }
 
 form input[type="password"],
@@ -69,16 +72,19 @@ button {
 	border-radius: 4px;
 	border: 1px solid #ddd;
 	box-sizing: border-box;
-	background-color: #4c66af;
+	background-color: #af4c4c;
 	color: white;
 	border: none;
 	cursor: pointer;
 }
 
 button:hover {
-	background-color: #4554a0;
+	background-color: #a04545;
 }
 
 /* 반응형 웹 */
 @media screen and (max-width: 768px) {
+	button {
+		width: 100%;
+	}
 }

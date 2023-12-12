@@ -6,11 +6,11 @@ function toggleFormDesktop() {
 	const right = document.getElementById("text-right");
 	const img = document.querySelector(".image-container");
 
-	// 현재 위치를 기반으로 방향 결정
+	// Determine direction based on current location
 	const isLeft = hider.style.left === "-5%" || hider.style.left === "";
 
 	if (isLeft) {
-		// 오른쪽으로 이동
+		// move to right
 		hider.style.left = "55%";
 		hider.style.borderRadius = "100px 10px 10px 100px";
 

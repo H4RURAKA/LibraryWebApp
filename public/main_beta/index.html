@@ -38,60 +38,55 @@
 		<div id="overlay"></div>
 
 		<main>
-			<section id="Account_Section">
-				<br />
-				<h2>Account Settings</h2>
-				<div id="account-details">
-					<p>
-						Current logged in ID:
-						<span id="current-user-id">UserID</span>
-					</p>
+			<!--
+			<div id="new_books">
+				<div>1st</div>
+				<div>2nd</div>
+				<div>3rd</div>
+			</div>
+			-->
+			<br />
+			<div id="menu_container">
+				<div class="main-banner">
+					<div class="left-banner"></div>
+					<a href="../record/index.html">
+						<div class="right-banner">
+							<span class="material-symbols-outlined"
+								>rate_review</span
+							>
+							<text>Write Record</text>
+						</div>
+					</a>
 				</div>
-				<br />
-				<div id="password-change">
-					<h3>Change Password</h3>
-					<form id="password-change-form">
-						<input
-							type="password"
-							id="current-password"
-							placeholder="Current Password"
-							required
-						/>
-						<span
-							class="error-message"
-							id="current-password-error"
-						></span>
-						<input
-							type="password"
-							id="new-password"
-							placeholder="New password"
-							required
-						/>
-						<span
-							class="error-message"
-							id="new-password-error"
-						></span>
-						<input
-							type="password"
-							id="confirm-new-password"
-							placeholder="New password Confirm"
-							required
-						/>
-						<span
-							class="error-message"
-							id="confirm-new-password-error"
-						></span>
-						<button type="submit">Change Password</button>
-					</form>
+
+				<div class="main-banner">
+					<div class="left-banner"></div>
+					<a href="../history/index.html">
+						<div class="right-banner">
+							<span class="material-symbols-outlined"
+								>history</span
+							>
+							<text>Record History</text>
+						</div>
+					</a>
 				</div>
-				<br />
-				<div id="account-deletion">
-					<h3>Withdrawal</h3>
-					<button id="delete-account-button">Withdrawal</button>
+
+				<div class="main-banner">
+					<div class="left-banner"></div>
+					<a href="../account/index.html">
+						<div class="right-banner">
+							<span class="material-symbols-outlined"
+								>account_circle</span
+							>
+							<text>Account Management</text>
+						</div>
+					</a>
 				</div>
-			</section>
+			</div>
 		</main>
+
 		<script type="module" src="index.js"></script>
 		<script type="module" src="../menu.js"></script>
+		<script type="module" src="../no_log_in.js"></script>
 	</body>
 </html>

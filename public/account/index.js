@@ -31,24 +31,24 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-// Firebase Auth 가져오기
+// get Firebase Auth
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// 로그아웃 상태 플래그
+// Flag to logout state
 let isLoggingOut = false;
 
-// 현재 로그인한 사용자 확인
+// Check currently logged in user
 onAuthStateChanged(auth, (currentUser) => {
 	if (currentUser) {
-		// 현재 로그인한 사용자의 이메일 표시
+		// Display email of currently logged in user
 		document.getElementById("current-user-id").textContent =
 			currentUser.email;
 		initializePageContent();
 		let isLoggingOut = false;
 	} else if (!isLoggingOut) {
 		alert("Access is restricted to members only.");
-		window.location.href = "../index.html"; // 로그인 페이지로 리다이렉트
+		window.location.href = "../index.html"; // redirectin to login page
 	}
 });
 
@@ -57,7 +57,7 @@ document
 	.addEventListener("submit", function (e) {
 		e.preventDefault();
 
-		// 요소 및 입력값 가져오기
+		// Get elements and inputs
 		const currentPasswordInput =
 			document.getElementById("current-password");
 		const newPasswordInput = document.getElementById("new-password");
@@ -65,7 +65,7 @@ document
 			"confirm-new-password"
 		);
 
-		// 오류 메시지 요소
+		// Error message element
 		const currentPasswordError = document.getElementById(
 			"current-password-error"
 		);
@@ -74,7 +74,7 @@ document
 			"confirm-new-password-error"
 		);
 
-		// 오류 메시지 초기화
+		// Reset error message
 		currentPasswordError.style.display = "none";
 		newPasswordError.style.display = "none";
 		confirmNewPasswordError.style.display = "none";
@@ -83,9 +83,9 @@ document
 		const newPassword = newPasswordInput.value;
 		const confirmNewPassword = confirmNewPasswordInput.value;
 
-		let hasError = false; // 오류가 있는지 여부를 나타내는 플래그
+		let hasError = false; // A flag indicating whether there was an error
 
-		// 새 비밀번호와 확인 비밀번호 일치 여부 확인
+		// Check whether the new password matches the password confirm
 		if (newPassword !== confirmNewPassword) {
 			confirmNewPasswordError.textContent =
 				"It does not match new password";
@@ -93,7 +93,7 @@ document
 			hasError = true;
 		}
 
-		// 새 비밀번호 길이 확인 (최소 6자 이상)
+		// Check the length of your new password (at least 6 characters)
 		if (newPassword.length < 6) {
 			newPasswordError.textContent =
 				"Password should be at least 6 characters";
@@ -101,7 +101,7 @@ document
 			hasError = true;
 		}
 
-		// 새 비밀번호가 현재 비밀번호와 같은지 확인
+		// Make sure your new password is the same as your current password
 		if (newPassword === currentPassword) {
 			newPasswordError.textContent =
 				"New password should be different with current password";
@@ -109,31 +109,34 @@ document
 			hasError = true;
 		}
 
-		// 오류가 없고, 사용자가 로그인한 경우
+		// If there are no errors and the user is logged in
 		if (!hasError && auth.currentUser) {
-			// EmailAuthProvider를 사용하여 인증 정보 생성
+			// Generate credentials using EmailAuthProvider
 			const credential = EmailAuthProvider.credential(
 				auth.currentUser.email,
 				currentPassword
 			);
 
-			// 현재 비밀번호로 재인증
+			// Re-authenticate with current password
 			reauthenticateWithCredential(auth.currentUser, credential)
 				.then(() => {
-					// 재인증 성공, 비밀번호 변경
+					// Re-authentication successful, password change
 					updatePassword(auth.currentUser, newPassword)
 						.then(() => {
 							alert("Password successfully changed.");
 							location.reload();
 						})
 						.catch((error) => {
-							console.error("비밀번호 변경 중 오류 발생:", error);
-							alert("비밀번호 변경 중 오류 발생");
+							console.error(
+								"Error occurred while changing password:",
+								error
+							);
+							alert("Error occurred while changing password");
 						});
 				})
 				.catch((error) => {
 					console.error("Reauthentication error:", error);
-					currentPasswordError.textContent = ""; // 초기화
+					currentPasswordError.textContent = ""; // reset
 					switch (error.code) {
 						case "auth/too-many-requests":
 							currentPasswordError.textContent =
@@ -149,7 +152,7 @@ document
 		}
 	});
 
-// 계정 삭제 이벤트 리스너
+// Account deletion event listener
 document
 	.getElementById("delete-account-button")
 	.addEventListener("click", function () {
@@ -160,7 +163,7 @@ document
 		if (confirmation) {
 			const user = auth.currentUser;
 
-			// 사용자가 작성한 독후감 삭제
+			// Delete a book report written by a user
 			const reviewsRef = collection(db, "bookReviews");
 			const q = query(reviewsRef, where("uid", "==", user.uid));
 
@@ -170,11 +173,10 @@ document
 						deleteDoc(doc(db, "bookReviews", docSnapshot.id));
 					});
 
-					// 모든 독후감이 삭제된 후 계정 삭제
+					// Deleting your account after all book reports have been deleted
 					deleteUser(user)
 						.then(() => {
 							alert("Account deleted successfully.");
-							// 계정 삭제 후 처리 로직 (예: 로그인 페이지로 리다이렉트)
 						})
 						.catch((error) => {
 							console.error("Account deletion error:", error);
@@ -188,20 +190,20 @@ document
 		}
 	});
 
-// 로그아웃 함수 정의
+// logout function
 function logout() {
-	isLoggingOut = true; // 로그아웃 중 플래그
+	isLoggingOut = true; // logout flag
 	signOut(auth)
 		.then(() => {
-			// 로그아웃 성공 시 처리
+			// success to logout
 			alert("Logout success");
-			window.location.href = "../index.html"; // 로그인 페이지
+			window.location.href = "../index.html"; // go to login page
 		})
 		.catch((error) => {
-			// 로그아웃 에러 처리
+			// logout error
 			console.error("Logout Error:", error);
 			alert("Logout Error");
-			isLoggingOut = false; // 플래그 초기화
+			isLoggingOut = false; // reset flag
 		});
 }
 
@@ -211,9 +213,9 @@ function initializePageContent() {
 		loadingCover.classList.add("hidden");
 		setTimeout(() => {
 			loadingCover.style.display = "none";
-		}, 500); // CSS transition 시간에 맞춰서 지연
+		}, 500); // CSS transition
 	}
 }
 
-// 로그아웃 버튼 이벤트 리스너
+// logout btn event listener
 document.getElementById("logout-button").addEventListener("click", logout);

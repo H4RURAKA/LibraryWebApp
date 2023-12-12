@@ -13,6 +13,25 @@
 	position: relative;
 }
 
+#reviews-container p {
+	grid-column: 1 / span 3;
+	text-align: center;
+	background-color: #ffffff;
+	padding: 15px;
+	margin-bottom: 2.5%;
+	border-radius: 5px;
+	position: relative;
+}
+
+.link {
+	color: #333;
+}
+
+.link:hover {
+	color: #4c66af;
+	text-decoration: underline;
+}
+
 .review-detail {
 	padding: 15px;
 	top: 10%;
@@ -45,6 +64,8 @@
 	border-radius: 5px;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 	margin: 10% 20%;
+	max-width: 768px;
+	margin: 10% auto;
 }
 
 .detail-header {
@@ -89,11 +110,19 @@
 	#reviews-container {
 		grid-template-columns: 1fr 1fr;
 	}
+
+	#detail-section {
+		margin: 10% 15%;
+	}
 }
 
 /* 반응형 웹 */
 @media screen and (max-width: 768px) {
 	#reviews-container {
 		grid-template-columns: 1fr;
+	}
+
+	#detail-section {
+		margin: 10% 10%;
 	}
 }

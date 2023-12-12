@@ -26,7 +26,6 @@
 			background-position: 0% 50%;
 		}
 	}
-	/*https://codepen.io/P1N2O/pen/pyBNzX*/
 
 	#particles-js {
 		position: absolute;
@@ -109,7 +108,7 @@
 	}
 
 	.text-container {
-		border-radius: 0 100px 100px 0; /* 오른쪽 라운드 */
+		border-radius: 0 100px 100px 0;
 	}
 
 	#text-left {
@@ -225,7 +224,7 @@
 	}
 
 	.error-message {
-		display: none; /* 기본적으로 숨김 */
+		display: none;
 		color: rgb(255, 255, 255);
 		background-color: red;
 	}
@@ -403,7 +402,7 @@
 	}
 
 	.error-message {
-		display: none; /* 기본적으로 숨김 */
+		display: none;
 		color: red;
 	}
 

@@ -1,4 +1,4 @@
-//메뉴버튼
+//menu btn javascript (common file)
 document.addEventListener("DOMContentLoaded", function () {
 	var menuIcon = document.getElementById("menu-icon");
 	var navigation = document.getElementById("navigation");
