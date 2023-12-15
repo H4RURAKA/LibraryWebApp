@@ -6,6 +6,12 @@ function toggleFormDesktop() {
 	const right = document.getElementById("text-right");
 	const img = document.querySelector(".image-container");
 
+	const emailError = document.getElementById("login-email-error");
+	const passwordError = document.getElementById("login-password-error");
+
+	emailError.style.display = "none";
+	passwordError.style.display = "none";
+
 	// Determine direction based on current location
 	const isLeft = hider.style.left === "-5%" || hider.style.left === "";
 
@@ -38,6 +44,13 @@ function toggleFormDesktop() {
 
 function toggleFormMobile(formToShow, formToHide) {
 	formToHide.style.opacity = "0";
+
+	const emailError = document.getElementById("login-email-error");
+	const passwordError = document.getElementById("login-password-error");
+
+	emailError.style.display = "none";
+	passwordError.style.display = "none";
+
 	setTimeout(() => {
 		formToHide.style.display = "none";
 		formToShow.style.display = "block";
